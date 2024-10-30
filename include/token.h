@@ -1,7 +1,22 @@
-#ifndef H_TOKEN
+#pragma once
+typedef enum {
+  ILLEGAL,
+  EOF,
+  IDENT,
+  INT,
+  ASSIGN,
+  PLUS,
+  COMMA,
+  SEMICOLON,
+  LPAREN,
+  RPAREN,
+  LBRACE,
+  RBRACE,
+  FUNCTION,
+  LET
+} TokenType;
+
 typedef struct {
-  char *Type;
+  TokenType Type;
   char *Literal;
 } Token;
-
-#endif // !H_TOKEN
