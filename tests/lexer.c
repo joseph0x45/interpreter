@@ -52,20 +52,22 @@ void test_next_token() {
       (test_struct){.expected_type = IDENT, .expected_literal = "ten"},
       (test_struct){.expected_type = RPAREN, .expected_literal = ")"},
       (test_struct){.expected_type = SEMICOLON, .expected_literal = ";"},
-      (test_struct){.expected_type = EOF, .expected_literal = ""},
+      (test_struct){.expected_type = END_OF_FILE, .expected_literal = ""},
   };
+  int len = sizeof(tests) / sizeof(test_struct);
   Lexer *l = new_lexer(input);
   int failed = 0;
-  for (int i = 0; i < 8; i++) {
+  for (int i = 0; i < len; i++) {
     Token token = next_token(l);
     test_struct current_test = tests[i];
     if (token.Type != current_test.expected_type) {
-      printf("Expected: %d but got %d\n", token.Type,
-             current_test.expected_type);
+      printf("Expected %s but got %s\n",
+             print_token_type(current_test.expected_type),
+             print_token_type(token.Type));
       failed++;
     }
     if (strcmp(token.Literal, current_test.expected_literal) != 0) {
-      printf("Expected: %s but got %s\n", token.Literal,
+      printf("Expected %s but got %s\n", token.Literal,
              current_test.expected_literal);
       failed++;
     }

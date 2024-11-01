@@ -1,9 +1,9 @@
 SHELL := /bin/bash
-CFLAGS = -Wall -Werror -Wextra -pedantic -I./include
+CFLAGS = -g -Wall -Werror -Wextra -pedantic -I./include
 CC = gcc
 TARGET = interpreter.o
 TEST_TARGET = test.o
-SRC = ./src/lexer.c ./src/utils.c
+SRC = ./src/lexer.c ./src/utils.c ./src/token.c
 
 build:
 	@$(CC) $(CFLAGS) -o $(TARGET) ./src/main.c $(SRC)

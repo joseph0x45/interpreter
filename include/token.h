@@ -1,7 +1,7 @@
 #pragma once
 typedef enum {
   ILLEGAL,
-  EOF,
+  END_OF_FILE,
   IDENT,
   INT,
   ASSIGN,
@@ -20,3 +20,7 @@ typedef struct {
   TokenType Type;
   char *Literal;
 } Token;
+
+char *print_token_type(TokenType t);
+
+TokenType get_identifier_type(Token *t);

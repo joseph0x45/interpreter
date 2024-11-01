@@ -58,6 +58,15 @@ Token next_token(Lexer *l) {
   case '0':
     t = (Token){.Type = EOF, .Literal = ""};
     break;
+  default:
+    if (is_letter(l->current_character)) {
+      t.Literal = read_identifier(l);
+      t.Type = get_identifier_type(&t);
+      return t;
+    } else {
+      t.Type = ILLEGAL;
+      t.Literal = "";
+    }
   }
   read_char(l);
   return t;
